@@ -1,11 +1,12 @@
 import "../styles/App.scss";
+import { useState } from "react";
 import Header from "./Header";
 import Board from "./Board";
 import Goods from "./Goods";
-import { useState } from "react";
+import Dice from "./Dice";
 
 function App() {
-  const dice = ["grogu", "galleta", "huevo", "rana"];
+  const [dice, setDice] = useState(["grogu", "galleta", "huevo", "rana"]);
   let diceResult = "";
   let indexFeet = 0;
   const grogu = ["feet", "", "", "", "", "", ""];
@@ -19,13 +20,14 @@ function App() {
   function rollDice() {
     const position = Math.round(Math.random() * (dice.length - 1 - 0) + 0);
     console.log("La posición del dado es", position);
-
+    console.log("Acabo de tirar el dado, contiene", dice);
     diceResult = dice[position];
     console.log("El resultado del dado es", diceResult);
-
+    setTextGameStatus(`Se ha descargado un/a ${diceResult}`);
     movingGrogu(grogu);
     downloadMerchan(merchan);
     console.log(merchan);
+    console.log("El dado contiene:", dice);
   }
 
   function movingGrogu(grogu) {
@@ -49,8 +51,10 @@ function App() {
       diceResult != "grogu" &&
       merchan.findIndex((array) => array.includes(diceResult)) === -1
     ) {
+      console.log("Eliminando elementos del dado");
       const indexDiceResultInDice = dice.indexOf(diceResult);
       dice.splice(indexDiceResultInDice, 1);
+      setDice(dice);
     }
 
     if (
@@ -77,7 +81,6 @@ function App() {
         "El índice del índice del array merchan es",
         indexDiceResultInMerchan
       );
-      setTextGameStatus(`Se ha descargado un/a ${diceResult}`);
     }
 
     if (
@@ -95,12 +98,7 @@ function App() {
       <main className="page">
         <Board />
 
-        <section>
-          <button onClick={rollDice} className="dice">
-            Lanzar Dado
-          </button>
-          <div className="game-status">{textGameStatus}</div>
-        </section>
+        <Dice onClic={rollDice} textGameStatus={textGameStatus} />
 
         <Goods />
         <section>
