@@ -1,6 +1,7 @@
 import "../styles/App.scss";
 import Header from "./Header";
 import Board from "./Board";
+import Goods from "./Goods";
 import { useState } from "react";
 
 function App() {
@@ -101,21 +102,7 @@ function App() {
           <div className="game-status">{textGameStatus}</div>
         </section>
 
-        <section className="goods-container">
-          <div className="goods-item">🍪</div>
-          <div className="goods-item">🍪</div>
-          <div className="goods-item">🍪</div>
-        </section>
-        <section className="goods-container">
-          <div className="goods-item">🥚</div>
-          <div className="goods-item">🥚</div>
-          <div className="goods-item">🥚</div>
-        </section>
-        <section className="goods-container">
-          <div className="goods-item">🐸</div>
-          <div className="goods-item">🐸</div>
-          <div className="goods-item">🐸</div>
-        </section>
+        <Goods />
         <section>
           <button className="restart-button">Reiniciar Juego</button>
         </section>
