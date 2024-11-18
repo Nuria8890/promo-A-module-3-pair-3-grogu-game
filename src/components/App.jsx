@@ -26,12 +26,10 @@ function App() {
     setTextGameStatus(`Se ha descargado un/a ${diceResult}`);
     movingGrogu(grogu);
     downloadMerchan(merchan);
-    console.log(merchan);
     console.log("El dado contiene:", dice);
   }
 
   function movingGrogu(grogu) {
-    console.log("Ejecuta movingGrogu");
     indexFeet = grogu.indexOf("feet");
     if (diceResult === "grogu" && indexFeet < 5) {
       grogu.splice(indexFeet, 2, "", "feet");
@@ -45,18 +43,6 @@ function App() {
   }
 
   function downloadMerchan(merchan) {
-    console.log("Ejecuta downloadMerchan");
-
-    if (
-      diceResult != "grogu" &&
-      merchan.findIndex((array) => array.includes(diceResult)) === -1
-    ) {
-      console.log("Eliminando elementos del dado");
-      const indexDiceResultInDice = dice.indexOf(diceResult);
-      dice.splice(indexDiceResultInDice, 1);
-      setDice(dice);
-    }
-
     if (
       diceResult !== "grogu" &&
       merchan.findIndex((array) => array.includes(diceResult)) !== -1
@@ -68,26 +54,23 @@ function App() {
         "El índice del array merchan es",
         indexArrayDiceResultInMerchan
       );
-      const indexDiceResultInMerchan =
-        merchan[indexArrayDiceResultInMerchan].indexOf(diceResult);
 
-      merchan[indexArrayDiceResultInMerchan].splice(
-        indexDiceResultInMerchan,
-        1
-      );
-      setMerchan(merchan);
+      if (merchan[indexArrayDiceResultInMerchan].length === 1) {
+        merchan.splice(indexArrayDiceResultInMerchan, 1);
+        console.log("merchan es:", merchan);
 
-      console.log(
-        "El índice del índice del array merchan es",
-        indexDiceResultInMerchan
-      );
+        console.log("Eliminando elementos del dado");
+        const indexDiceResultInDice = dice.indexOf(diceResult);
+        dice.splice(indexDiceResultInDice, 1);
+        setDice(dice);
+      } else {
+        merchan[indexArrayDiceResultInMerchan].pop();
+        setMerchan(merchan);
+        console.log("merchan es:", merchan);
+      }
     }
 
-    if (
-      merchan[0].length === 0 &&
-      merchan[1].length === 0 &&
-      merchan[2].length === 0
-    ) {
+    if (merchan.length === 0) {
       setTextGameStatus("MANDO GANA");
     }
   }
