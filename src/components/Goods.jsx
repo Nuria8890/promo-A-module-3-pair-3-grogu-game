@@ -1,3 +1,5 @@
+import "../styles/layout/Goods.scss";
+
 function Goods() {
   return (
     <>

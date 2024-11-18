@@ -1,3 +1,4 @@
+import "../styles/layout/Board.scss";
 import Grogu from "./Grogu.jsx";
 
 function Board() {
