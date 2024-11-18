@@ -9,7 +9,7 @@ function App() {
   const [dice, setDice] = useState(["grogu", "galleta", "huevo", "rana"]);
   let diceResult = "";
   let indexFeet = 0;
-  const grogu = ["feet", "", "", "", "", "", ""];
+  const [grogu, setGrogu] = useState(["feet", "", "", "", "", "", ""]);
   const [merchan, setMerchan] = useState([
     ["galleta", "galleta", "galleta"],
     ["huevo", "huevo", "huevo"],
@@ -40,6 +40,8 @@ function App() {
       indexFeet++;
       setTextGameStatus("HA GANADO GROGU");
     }
+    setGrogu(grogu);
+    console.log("grogu:", grogu);
   }
 
   function downloadMerchan(merchan) {
