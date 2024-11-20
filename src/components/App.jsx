@@ -9,12 +9,15 @@ function App() {
   const [dice, setDice] = useState(["grogu", "galleta", "huevo", "rana"]);
   let diceResult = "";
   let indexFeet = 0;
-  const [grogu, setGrogu] = useState(["feet", "", "", "", "", "", ""]);
+
+  const [groguPosition, setGroguPosition] = useState(0);
+
   const [merchan, setMerchan] = useState([
     ["galleta", "galleta", "galleta"],
     ["huevo", "huevo", "huevo"],
     ["rana", "rana", "rana"],
   ]);
+
   const [textGameStatus, setTextGameStatus] = useState("En curso");
 
   function rollDice() {
