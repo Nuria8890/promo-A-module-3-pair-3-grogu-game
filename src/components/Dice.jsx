@@ -1,4 +1,5 @@
 import PropTypes from "prop-types";
+import GameStatus from "./GameStatus";
 
 function Dice(props) {
   const handleClick = (event) => {
@@ -9,7 +10,7 @@ function Dice(props) {
       <button onClick={handleClick} className="dice">
         Lanzar Dado
       </button>
-      <div className="game-status">{props.textGameStatus}</div>
+      <GameStatus textGameStatus={props.textGameStatus} />
     </section>
   );
 }

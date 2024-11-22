@@ -1,6 +1,7 @@
 function Form(props) {
   const handleChange = (event) => {
-    props.setName(event.target.value);
+    props.setName(`${event.target.value}`);
+    props.updateName();
   };
 
   return (

@@ -23,6 +23,11 @@ function App() {
 
   const [textGameStatus, setTextGameStatus] = useState("En curso");
 
+  function updateName() {
+    console.log("name vale", name);
+    setTextGameStatus(`${name}`);
+  }
+
   function rollDice() {
     const position = Math.round(Math.random() * (dice.length - 1 - 0) + 0);
     console.log("La posición del dado es", position);
@@ -87,7 +92,7 @@ function App() {
     <>
       <Header />
       <main className="page">
-        <Form name={name} setName={setName} />
+        <Form name={name} setName={setName} updateName={updateName} />
         <Board />
 
         <Dice onClic={rollDice} textGameStatus={textGameStatus} />
