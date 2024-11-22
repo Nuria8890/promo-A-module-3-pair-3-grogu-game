@@ -1,6 +1,7 @@
 import "../styles/App.scss";
 import { useState } from "react";
 import Header from "./Header";
+import Form from "./Form";
 import Board from "./Board";
 import Goods from "./Goods";
 import Dice from "./Dice";
@@ -9,6 +10,8 @@ function App() {
   const [dice, setDice] = useState(["grogu", "galleta", "huevo", "rana"]);
   let diceResult = "";
   let indexFeet = 0;
+
+  const [name, setName] = useState("");
 
   const [groguPosition, setGroguPosition] = useState(0);
 
@@ -84,6 +87,7 @@ function App() {
     <>
       <Header />
       <main className="page">
+        <Form name={name} setName={setName} />
         <Board />
 
         <Dice onClic={rollDice} textGameStatus={textGameStatus} />
