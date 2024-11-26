@@ -1,10 +1,10 @@
 import "../styles/App.scss";
 import { useState } from "react";
 import Header from "./Header";
-import Form from "./Form";
-import Board from "./Board";
-import Goods from "./Goods";
-import Dice from "./Dice";
+import Game from "./Game";
+import Footer from "./Footer";
+import Instructions from "./Instructions";
+import { Routes, Route } from "react-router-dom";
 
 function App() {
   const [dice, setDice] = useState(["grogu", "galleta", "huevo", "rana"]);
@@ -92,16 +92,13 @@ function App() {
     <>
       <Header />
       <main className="page">
-        <Form name={name} setName={setName} updateName={updateName} />
-        <Board />
-
-        <Dice onClic={rollDice} textGameStatus={textGameStatus} />
-
-        <Goods />
-        <section>
-          <button className="restart-button">Reiniciar Juego</button>
-        </section>
+        <Routes>
+          <Route path="/" element={<Game name={name} setName={setName} updateName={updateName} onClic={rollDice} textGameStatus={textGameStatus} />} />
+          <Route path="/Instructions" element={<Instructions/>} />
+        </Routes>
       </main>
+      <Footer/>
+
     </>
   );
 }
